@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Where Will You Work? | The Daily Nebraskan</title>
+  <meta name="description" content="A Daily Nebraskan novelty: find out which (entirely fictional) news organization you will work for after graduation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --paper: #fffdf8;
+      --text: #1b1917;
+      --muted: #6a625a;
+      --scarlet: #d00000;
+      --cream: #fdf2d0;
+      --line: #d8d0c4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141211;
+        --paper: #1e1b19;
+        --text: #f3ede5;
+        --muted: #a59b90;
+        --scarlet: #ef4a3f;
+        --cream: #fdf2d0;
+        --line: #3a342f;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 18px/1.6 Georgia, "Times New Roman", serif;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+    /* Masthead */
+    .topbar { background: var(--scarlet); color: var(--cream); font: 600 12px/1 -apple-system, "Segoe UI", Helvetica, sans-serif; letter-spacing: .14em; text-transform: uppercase; padding: 9px 0; text-align: center; }
+    .masthead { text-align: center; padding: 28px 0 14px; border-bottom: 4px double var(--text); }
+    .masthead .name {
+      font-family: "UnifrakturCook", "Old English Text MT", "Textura", Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 9vw, 4.4rem);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: .01em;
+    }
+    .masthead .sub {
+      display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+      margin-top: 14px; padding-top: 8px; border-top: 1px solid var(--text);
+      font: 12px/1.3 -apple-system, "Segoe UI", Helvetica, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    }
+
+    /* Main */
+    main { padding: 38px 0 20px; }
+    .kicker { font: 700 13px/1 -apple-system, "Segoe UI", Helvetica, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--scarlet); margin: 0 0 12px; }
+    h1.headline { font-size: clamp(1.9rem, 6vw, 2.9rem); line-height: 1.08; margin: 0 0 14px; letter-spacing: -.01em; }
+    .deck { color: var(--muted); font-size: 1.1rem; margin: 0 0 30px; }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-top: 6px solid var(--scarlet);
+      padding: 28px 22px 26px;
+      text-align: center;
+      box-shadow: 0 2px 0 var(--line);
+    }
+    .card .label { font: 600 12px/1 -apple-system, "Segoe UI", Helvetica, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+    .result {
+      font-size: clamp(1.7rem, 6.4vw, 2.7rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin: 0 0 22px;
+      min-height: 3.4em;
+      display: flex; align-items: center; justify-content: center;
+      overflow-wrap: anywhere;
+    }
+    .result.pop { animation: pop .35s ease-out; }
+    @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .result.pop { animation: none; } }
+
+    .parts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0 0 24px; padding: 0; list-style: none; font: 12px/1 -apple-system, "Segoe UI", Helvetica, sans-serif; }
+    .parts li { border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; color: var(--muted); }
+    .parts li b { color: var(--scarlet); font-weight: 700; margin-right: 4px; }
+
+    .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    button {
+      font: 700 15px/1 -apple-system, "Segoe UI", Helvetica, sans-serif;
+      padding: 14px 24px; border-radius: 4px; cursor: pointer;
+      border: 2px solid var(--scarlet);
+    }
+    button.primary { background: var(--scarlet); color: #fff; }
+    button.ghost { background: transparent; color: var(--scarlet); }
+    button:hover { filter: brightness(1.08); }
+    button:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+
+    .toast { font: 13px/1 -apple-system, "Segoe UI", Helvetica, sans-serif; color: var(--muted); height: 16px; margin-top: 14px; }
+
+    section.history { margin-top: 38px; padding-top: 18px; border-top: 1px solid var(--text); }
+    section.history h2 { font: 700 13px/1 -apple-system, "Segoe UI", Helvetica, sans-serif; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 12px; }
+    ol.log { margin: 0; padding: 0; list-style: none; }
+    ol.log li { padding: 9px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 1rem; }
+    ol.log li:first-child { color: var(--text); }
+    .empty { color: var(--muted); font-style: italic; }
+
+    footer { padding: 28px 0 44px; color: var(--muted); font: 13px/1.5 -apple-system, "Segoe UI", Helvetica, sans-serif; border-top: 4px double var(--text); margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">Career Services Desk &middot; Not Affiliated with Any Real Employer</div>
+  <div class="wrap">
+    <header class="masthead">
+      <p class="name">The Daily Nebraskan</p>
+      <div class="sub"><span>University of Nebraska&ndash;Lincoln</span><span>Student Newspaper</span><span>Est. Probably</span></div>
+    </header>
+
+    <main>
+      <p class="kicker">Post-Graduation Placement</p>
+      <h1 class="headline">Where will you work after graduation?</h1>
+      <p class="deck">Our patented, entirely unscientific Placement Engine has reviewed your clips, your GPA, and the vibes. Press the button to learn your destiny.</p>
+
+      <div class="card">
+        <p class="label">Your future employer</p>
+        <p class="result" id="result" aria-live="polite">&hellip;</p>
+        <ul class="parts" id="parts" aria-label="Breakdown of the name"></ul>
+        <div class="btns">
+          <button class="primary" id="go">Reveal my newsroom</button>
+          <button class="ghost" id="copy">Copy name</button>
+        </div>
+        <div class="toast" id="toast" role="status"></div>
+      </div>
+
+      <section class="history">
+        <h2>Previous Placements (Do Not Get Attached)</h2>
+        <ol class="log" id="log"><li class="empty">Nothing yet. Fate awaits.</li></ol>
+      </section>
+    </main>
+
+    <footer>
+      A novelty from The Daily Nebraskan. Every organization named here is fictional, and any resemblance to an actual employer, region, or hiring manager is a coincidence we will not be taking questions on.
+    </footer>
+  </div>
+
+  <script>
+    // Pattern: Region adjective + Place + Topic + Medium + Organization type
+    const REGIONS = [
+      "South-central","Eastern","Western","Northern","Southeastern","Northwestern","Midwestern","Trans-Atlantic",
+      "Above-ground","Subterranean","Cavernous","Coastal","Landlocked","Mountainous","Lowland","Upstream",
+      "Downtown","Suburban","Rural","Off-grid","Offshore","Alpine","Tropical","Arctic","Semi-arid",
+      "Greater","Lesser","Outer","Inner","Central","Bordering","Unincorporated","Mid-Atlantic","Pan-Pacific",
+      "Intercontinental","Hyperlocal","Interstellar","Low-lying","High-altitude","Rolling","Windswept",
+      "Underwater","Overpass-adjacent","Left-hand","Right-of-center","Near-Eastern","Far-Flung","Back-Country"
+    ];
+
+    const PLACES = [
+      "Omaha","Lincoln","Kentucky","Quebec","Malaysia","Nebraska","Ohio","Luxembourg","Kazakhstan","Saskatchewan",
+      "Fiji","Belgium","Wyoming","Tasmania","Nunavut","Iceland","Peoria","Boise","Manitoba","Lithuania",
+      "Duluth","Bolivia","Ulaanbaatar","Guam","Delaware","Scranton","Mozambique","Brisbane","Albuquerque","Estonia",
+      "New Brunswick","Yukon","Liechtenstein","Bhutan","Kearney","Grand Island","Cleveland","Slovenia","Montana","Paraguay",
+      "Dubuque","Reykjavik","Wichita","Sri Lanka","Alberta","Scotland","Ecuador","Fargo","Nova Scotia","Moldova",
+      "Texas","Hastings","Burkina Faso","Rhode Island","Newfoundland","Tulsa","Mongolia","Bellevue","Costa Rica","Oslo",
+      "Muskogee","Madagascar","Cheyenne","Vatican City","Sioux Falls","Prince Edward Island","Honduras","North Platte","Bangladesh","Kalamazoo"
+    ];
+
+    const TOPICS = [
+      "Curling","Equestrian","Indie Film","Fast Food","Competitive Birdwatching","Corn","Municipal Zoning","Cryptozoology",
+      "Lawn Care","Minor League Hockey","Extreme Ironing","Casserole","Soybean Futures","Interpretive Dance","Pickleball",
+      "Tractor","Taxidermy","Bluegrass","Bowling","Dinner Theater","Competitive Eating","Medieval Reenactment","Parking",
+      "Fantasy Football","Yodeling","Rodeo","Mattress","Beekeeping","Cheese","Sudoku","Crop Circle","Lacrosse",
+      "Home Renovation","Celebrity Pet","Polka","Grain Elevator","Church Potluck","Speed Chess","Chicken Wing","Haunted House",
+      "Competitive Napping","Stock Car","Ice Fishing","Reality Dating","True Crime","Tax Law","Duck Pond","Sourdough",
+      "Quilting","Podiatry","Roller Derby","Trombone","Weather Balloon","Hot Dish","Beach Volleyball","Thrift Store",
+      "Local Politics","Lost Sock","Bagpipe","Gas Station Sushi","Dentistry","Scarecrow","Hydration","Corn Maze"
+    ];
+
+    const MEDIA = [
+      "News","Broadcasting","Print","Digital","Video","Documentary","Photography","Radio","Podcast","Television",
+      "Cable","Satellite","Streaming","Telegraph","Wire","Newsletter","Livestream","Microfilm","Billboard","Pamphlet",
+      "Interactive","Audio","Mobile","Online","Multimedia","Fax","Pager","Skywriting","Town Crier","Shortwave"
+    ];
+
+    const TYPES = [
+      "Company","Service","Post","Times","Gazette","Corporation","Network","Tribune","Herald","Journal",
+      "Bureau","Chronicle","Observer","Dispatch","Courier","Press","Review","Standard","Sentinel","Union",
+      "Association","Syndicate","Collective","Agency","Society","Ledger","Examiner","Inquirer","Register","Consortium"
+    ];
+
+    const pick = a => a[Math.floor(Math.random() * a.length)];
+
+    const $ = id => document.getElementById(id);
+    const resultEl = $("result"), partsEl = $("parts"), logEl = $("log"), toastEl = $("toast");
+    let current = "", history = [];
+
+    function generate() {
+      const parts = [
+        ["Region", pick(REGIONS)],
+        ["Place", pick(PLACES)],
+        ["Topic", pick(TOPICS)],
+        ["Medium", pick(MEDIA)],
+        ["Type", pick(TYPES)]
+      ];
+      current = parts.map(p => p[1]).join(" ");
+
+      resultEl.textContent = current;
+      resultEl.classList.remove("pop"); void resultEl.offsetWidth; resultEl.classList.add("pop");
+
+      partsEl.replaceChildren(...parts.map(([k, v]) => {
+        const li = document.createElement("li");
+        const b = document.createElement("b"); b.textContent = k;
+        li.append(b, v);
+        return li;
+      }));
+
+      history.unshift(current);
+      history = history.slice(0, 8);
+      logEl.replaceChildren(...history.map(h => { const li = document.createElement("li"); li.textContent = h; return li; }));
+      toastEl.textContent = "";
+    }
+
+    $("go").addEventListener("click", generate);
+    $("copy").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(current); toastEl.textContent = "Copied. Put it on your résumé."; }
+      catch { toastEl.textContent = "Couldn't copy. Select the name instead."; }
+    });
+
+    generate();
+  </script>
+</body>
+</html>
