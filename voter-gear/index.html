@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Voter Gear</title>
+  <meta name="description" content="Voter Gear: an 8-bit stealth parody about getting through a crowded polling place.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="wrap">
+    <canvas id="screen" width="256" height="224" aria-label="Voter Gear game screen"></canvas>
+    <div id="touch" hidden>
+      <div class="dpad">
+        <button data-k="up" class="up" aria-label="Up">&#9650;</button>
+        <button data-k="left" class="left" aria-label="Left">&#9664;</button>
+        <button data-k="right" class="right" aria-label="Right">&#9654;</button>
+        <button data-k="down" class="down" aria-label="Down">&#9660;</button>
+      </div>
+      <div class="btns">
+        <button data-k="radio" class="pill">CALL</button>
+        <button data-k="start" class="pill">START</button>
+        <button data-k="b" class="round">B</button>
+        <button data-k="a" class="round">A</button>
+      </div>
+    </div>
+    <p class="help">Arrows/WASD move &middot; Z use item / talk &middot; X switch item &middot; C call hotline &middot; Enter pause &middot; M mute</p>
+  </main>
+  <script src="js/font.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
